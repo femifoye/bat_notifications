@@ -3,20 +3,15 @@ require_relative 'Notification'
 
 module BasicNotificationDecorator
     
-    
-    def self.get_notification_base
-        @notificationBase = Notification.new
-        return @notificationBase
-    end
-    
     def self.set_action(action)
         @action = action
     end
     
-    def self.set_base_and_action(action)
-        get_notification_base
-        set_action(action)
+    def self.init_basic_decorator
+        set_action("Basic Notification")
+        @basicNotification = BasicNotification.new(@action, "Sender", "Receiver", "Message" )
     end
+    
     
     def self.get_basic_notification_action
         init_basic_decorator
@@ -33,9 +28,9 @@ module BasicNotificationDecorator
         return @basicNotification.get_receiver
     end
     
-    def self.get_basic_notification_message
+    def self.get_basic_notification_content
         init_basic_decorator
-        return @basicNotification.get_message
+        return @basicNotification.get_content
     end
     
     def self.get_basic_notification_base
@@ -43,10 +38,6 @@ module BasicNotificationDecorator
         return @basicNotification.get_notification_base
     end
     
-    def self.init_basic_decorator
-        set_base_and_action("Basic Notification")
-        @basicNotification = BasicDecorator.new(@notificationBase, @action, "Sender", "Receiver", "Message" )
-    end
     
     
 end

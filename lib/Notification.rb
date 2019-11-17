@@ -1,48 +1,39 @@
 require 'delegate'
 
-class Notification
+# class Notification
    
     
-    def message
-        return "This is get message from #{@action}"
-    end
+#     def message
+#         return "This is get message from #{@action}"
+#     end
     
-    def read_message
-        return "this is read message"
-    end
+#     def read_message
+#         return "this is read message"
+#     end
     
-    def get_action
-        return @action
-    end
+#     def get_action
+#         return @action
+#     end
     
     
     
-end
+# end
 
 class NotificationDecorator < SimpleDelegator
-    def initialize(notificationBase, action, sender, receiver, message)
-        super(notificationBase)
+    def initialize(action, sender, receiver, content)
+        #super(notificationBase)
         @action = action
         @sender = sender
         @receiver = receiver
-        @message = message
+        @content = content
     end
     
     def booking_method
         return "this is booking method"
     end
 
-    
-    
-end
-
-class BasicDecorator < NotificationDecorator
-    def message
-        return "You have a new #{@action} from #{@sender}. Check out the details"
-    end
-    
-    def get_message
-        return @message
+    def get_content
+        return @content
     end
     
     def get_sender
@@ -60,45 +51,55 @@ class BasicDecorator < NotificationDecorator
     def get_notification_base
         return @notificationBase
     end
+    
+    
 end
 
-class BookingsDecorator < NotificationDecorator
+class BasicNotification < NotificationDecorator
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end
     
-    def get_message
-        return @message
-    end
+  
 end
 
-class ReviewDecorator < NotificationDecorator
+class BookingsNotification < NotificationDecorator
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end
     
-    def get_message
-        return @message
+    def get_content
+        return @content
     end
 end
 
-class InboxDecorator < NotificationDecorator
+class ReviewNotification < NotificationDecorator
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end
     
-    def get_message
-        return @message
+    def get_content
+        return @content
     end
 end
 
-class AppMessageDecorator < NotificationDecorator
+class InboxNotification < NotificationDecorator
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end
     
-    def get_message
-        return @message
+    def get_content
+        return @content
+    end
+end
+
+class AppMessageNotification < NotificationDecorator
+    def message
+        return "You have a new #{@action} from #{@sender}. Check out the details"
+    end
+    
+    def get_content
+        return @content
     end
 end
    

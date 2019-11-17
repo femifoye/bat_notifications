@@ -9,9 +9,9 @@ module SendNotification
         puts @bookingsNotification.get_message
     end
     
-    def self.sendReviewNotification
+    def self.sendReviewNotification(@sender, @receiver, @content)
         set_base_and_action("Review")
-        @bookingsNotification = ReviewDecorator.new(@notificationBase, @action, "Femi", "Lanre", "I have reviewed a Session")
+        @bookingsNotification = ReviewDecorator.new(@notificationBase, @action, @sender, @receiver, @content)
         puts @bookingsNotification.message
         puts @bookingsNotification.get_message
     end
