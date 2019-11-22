@@ -2,7 +2,7 @@ module AUser
     def self.sender
         return {
             "id" => "3",
-            "email" => "sender@gmail.com",
+            "email" => "bookatutorapp@gmail.com",
             "firstname" => "John",
             "lastname" => "Sender",
             "role" => "Student",
@@ -15,7 +15,7 @@ module AUser
     def self.receiver
         return {
             "id" => "3",
-            "email" => "receiver@gmail.com",
+            "email" => "femi.abdul67@gmail.com",
             "firstname" => "John",
             "lastname" => "Receiver",
             "role" => "Tutor",

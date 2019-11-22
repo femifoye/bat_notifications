@@ -14,8 +14,8 @@ class NotificationTest < Minitest::Test
         assert_equal("Receiver", BasicNotificationDecorator.get_basic_notification_receiver)
     end
     
-    def test_decorator_can_get_message
-        assert_equal("Message", BasicNotificationDecorator.get_basic_notification_message)
+    def test_decorator_can_get_content
+        assert_equal("Message", BasicNotificationDecorator.get_basic_notification_content)
     end
     
     

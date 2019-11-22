@@ -2,6 +2,8 @@ require_relative 'Notification'
 require_relative 'NotificationDb'
 require_relative "Content.rb"
 
+require "async"
+
 
 module ReviewNotificationDecorator
     
@@ -53,10 +55,21 @@ module ReviewNotificationDecorator
         return @reviewNotification.get_receiver["lastname"]
     end
     
+    def self.send_notification
+        init_review_decorator
+        return @reviewNotification.send_notification
+    end
+    
+    # init_review_decorator
+    # send_email = Async do
+    #     @reviewNotification.send_notification
+    # end
+
+    # puts send_email.status
+    
 
     
 end
 
-puts ReviewNotificationDecorator.get_review_content
 
 

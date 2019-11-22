@@ -5,7 +5,7 @@ module Content
         return {
             "id" => "3",
             "reviewee" => AUser.receiver,
-            "review_content" => "Very good tutor",
+            "content" => "Very good tutor",
             "review_stars" => "4",
             "user_id" => AUser.sender[:id]
         }
