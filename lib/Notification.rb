@@ -70,8 +70,8 @@ class NotificationDecorator < SimpleDelegator
                     :enable_starttls_auto => true,
                     :user_name            => 'bookatutorapp@gmail.com',
                     :password             => 'b00katut0r@123!',
-                    :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
-                    :domain               => "localhost.localdomain" # the HELO domain provided by the client to the server
+                    :authentication       => :plain, 
+                    :domain               => "localhost.localdomain" 
                 }
             )
             
@@ -87,13 +87,13 @@ class NotificationDecorator < SimpleDelegator
     def send_notification
         @sender_email = self.get_sender["email"]
         @receiver_email = self.get_receiver["email"]
-        @mail_content = self.get_content["content"]
+        @mail_content = message
         
         mail_status = Async do
             self.send_email
         end
         
-        return mail_status.status
+        return mail_status.wait.content_type.length
         
         
         
@@ -111,7 +111,7 @@ class BasicNotification < NotificationDecorator
   
 end
 
-class BookingsNotification < NotificationDecorator
+class BookingNotification < NotificationDecorator
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end

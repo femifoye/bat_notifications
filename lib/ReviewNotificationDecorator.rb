@@ -61,14 +61,10 @@ module ReviewNotificationDecorator
     end
     
     # init_review_decorator
-    # send_email = Async do
-    #     @reviewNotification.send_notification
-    # end
+    # send_email = @reviewNotification.send_notification
+        
 
-    # puts send_email.status
-    
-
-    
+    # puts send_email.content_type.length
 end
 
 
