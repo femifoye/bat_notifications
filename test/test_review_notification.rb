@@ -19,7 +19,7 @@ class ReviewNotificationTest < Minitest::Test
     end
     
     def test_review_can_send_email
-        assert_equal(:complete, ReviewNotificationDecorator.send_notification)
+        assert_equal(true, ReviewNotificationDecorator.send_notification > 0)
     end
     
 end

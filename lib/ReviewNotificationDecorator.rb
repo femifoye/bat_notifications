@@ -59,12 +59,7 @@ module ReviewNotificationDecorator
         init_review_decorator
         return @reviewNotification.send_notification
     end
-    
-    # init_review_decorator
-    # send_email = @reviewNotification.send_notification
-        
 
-    # puts send_email.content_type.length
 end
 
 
