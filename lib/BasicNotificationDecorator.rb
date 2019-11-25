@@ -1,4 +1,4 @@
-require_relative 'Notification'
+require_relative 'bat_notifications'
 
 
 module BasicNotificationDecorator

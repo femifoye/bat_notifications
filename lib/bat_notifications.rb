@@ -20,7 +20,7 @@ require 'pony'
     
 # end
 
-class NotificationDecorator < SimpleDelegator
+class BAT_Notification < SimpleDelegator
     #initialize our constructor
     def initialize(action, sender, receiver, content)
         #super(notificationBase)
@@ -103,7 +103,7 @@ class NotificationDecorator < SimpleDelegator
     
 end
 
-class BasicNotification < NotificationDecorator
+class BasicNotification < BAT_Notification
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end
@@ -111,7 +111,7 @@ class BasicNotification < NotificationDecorator
   
 end
 
-class BookingNotification < NotificationDecorator
+class BookingNotification < BAT_Notification
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end
@@ -121,7 +121,7 @@ class BookingNotification < NotificationDecorator
     end
 end
 
-class ReviewNotification < NotificationDecorator
+class ReviewNotification < BAT_Notification
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end
@@ -131,7 +131,7 @@ class ReviewNotification < NotificationDecorator
     end
 end
 
-class InboxNotification < NotificationDecorator
+class InboxNotification < BAT_Notification
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end
@@ -141,7 +141,7 @@ class InboxNotification < NotificationDecorator
     end
 end
 
-class AppMessageNotification < NotificationDecorator
+class AppMessageNotification < BAT_Notification
     def message
         return "You have a new #{@action} from #{@sender}. Check out the details"
     end

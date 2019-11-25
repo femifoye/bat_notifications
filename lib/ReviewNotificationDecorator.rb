@@ -1,4 +1,4 @@
-require_relative 'Notification'
+require_relative 'bat_notifications'
 require_relative 'NotificationDb'
 require_relative "Content.rb"
 
