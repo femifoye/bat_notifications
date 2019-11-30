@@ -18,8 +18,21 @@ class BookingNotificationTest < Minitest::Test
         assert_equal("Receiver", BookingNotificationDecorator.get_user_booked)
     end
     
+    
     def test_booking_can_send_email
         assert_equal(true, BookingNotificationDecorator.send_notification > 0)
+    end
+    
+    def test_user_booking_notification
+        assert_equal(true, BookingNotificationDecorator.get_user_booking_notification != nil)
+    end
+    
+     def test_user_booking_notification_subject
+        assert_equal("New Booking created", BookingNotificationDecorator.get_user_booking_notification_subject)
+    end
+    
+    def test_user_booking_can_send_email
+        assert_equal(true, BookingNotificationDecorator.user_send_notification > 0)
     end
     
 end

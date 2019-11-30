@@ -2,7 +2,7 @@ module AUser
     def self.sender
         return {
             "id" => "3",
-            "email" => "bookatutorapp@gmail.com",
+            "email" => "house16studio@gmail.com",
             "firstname" => "John",
             "lastname" => "Sender",
             "role" => "Student",
@@ -24,6 +24,7 @@ module AUser
             "location" => "Dublin"
         }
     end
+    
     
     
 end

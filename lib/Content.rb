@@ -1,4 +1,5 @@
 require_relative 'A_User'
+require 'date'
 
 module Content
     def self.review_content
@@ -20,7 +21,8 @@ module Content
                 "latitude" => "53.348738600000004"
             },
             "user_id" => AUser.sender[:id],
-            "user_booked" => AUser.receiver
+            "user_booked" => AUser.receiver,
+            "hours_booked" => "4"
         }
     end
     

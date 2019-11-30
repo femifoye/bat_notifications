@@ -3,7 +3,7 @@ require 'InboxNotificationDecorator'
 
 class InboxNotificationTest < Minitest::Test
     def test_inbox_decorator_can_get_action
-        assert_equal("Inbox", InboxNotificationDecorator.get_inbox_action)
+        assert_equal("Message", InboxNotificationDecorator.get_inbox_action)
     end
     
     def test_inbox_stars_has_content

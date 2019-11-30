@@ -26,38 +26,38 @@ module InboxNotificationDecorator
     
     
     def self.init_inbox_decorator
-        set_action("Inbox")
         set_content
         set_sender
         set_receiver
-        @inboxNotification = InboxNotification.new( @action, @sender, @receiver, @content )
+        @notification = Notification.new(@sender, @receiver, @content)
+        @notification = InboxNotification.new(@notification)
     end
     
     def self.get_inbox_action
         init_inbox_decorator
-        return @inboxNotification.get_action
+        return @notification.get_action
     end
     
     def self.get_inbox_content
         init_inbox_decorator
-        content = @inboxNotification.get_content
+        content = @notification.get_content
         inbox_content = content["message_content"]
         return true if inbox_content
     end
     
     def self.get_inbox_sender
         init_inbox_decorator
-        return @inboxNotification.get_sender["lastname"]
+        return @notification.get_sender["lastname"]
     end
     
     def self.get_inbox_receiver
         init_inbox_decorator
-        return @inboxNotification.get_receiver["lastname"]
+        return @notification.get_receiver["lastname"]
     end
     
     def self.send_notification
         init_inbox_decorator
-        return @inboxNotification.send_notification
+        return @notification.send_notification_to_receiver
     end
 
 end
