@@ -58,7 +58,7 @@ module BookingNotificationDecorator
     
     def self.send_notification
         init_booking_decorator
-        return @notification.send_notification
+        return @notification.send_notification_to_receiver
     end
     
     def self.get_user_booking_notification
@@ -71,7 +71,12 @@ module BookingNotificationDecorator
         @notification = UserBookingNotification.new(@notification)
         return @notification.get_subject
     end
-
+    
+    def self.user_send_notification
+        init_booking_decorator
+        @notification = UserBookingNotification.new(@notification)
+        return @notification.send_notification_to_sender
+    end
 end
 
 

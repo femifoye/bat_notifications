@@ -2,6 +2,8 @@ require 'delegate'
 require 'pony'
 require 'geocoder'
 require 'time'
+require_relative 'functions/BookingFunctions'
+require_relative 'functions/ReviewFunctions'
 
 
 # concrete component to be decorated.
@@ -42,11 +44,6 @@ class NotificationDecorator
         @sender = get_sender
         @receiver = get_receiver
         @content = get_content
-        @location = Geocoder.search("#{@content["location"]["latitude"]}, #{@content["location"]["longitude"]}")[0].data
-        @booking_message = "<p>Location: #{@location["address"]["address29"]}</p> \r\n
-        <p>Time Booked: #{Time.at(@content["date"].to_time.to_i).httpdate}</p> \r\n
-        <p>Hours Booked: #{@content["hours_booked"]}</p> \r\n
-        "
     end
     
     def get_content
@@ -65,9 +62,6 @@ class NotificationDecorator
         return @action
     end
     
-    def get_booking_message
-        return @booking_message
-    end
     
     def message
         return "You have a new #{@action} from #{get_sender}. Check out the details"
@@ -101,6 +95,40 @@ class NotificationDecorator
             puts e.backtrace.inspect
         end
     end
+    
+    def async_email
+        @mail_status = Async do
+            self.send_email
+        end
+    end
+    
+    def get_sender_full_name
+        return "#{@sender['firstname']} #{@sender['lastname']}"   
+    end
+    
+    def get_receiver_full_name
+         return "#{@receiver['firstname']} #{@receiver['lastname']}"   
+    end
+    
+    def send_notification_to_sender
+        @sender_email = "bookatutorapp@gmail.com"
+        @receiver_email = self.get_sender["email"]
+        
+        async_email
+        
+        return @mail_status.wait.content_type.length
+    end
+    
+    def send_notification_to_receiver
+        @sender_email = "bookatutorapp@gmail.com"
+        @receiver_email = self.get_receiver["email"]
+        
+        async_email
+        
+        return @mail_status.wait.content_type.length
+    end
+    
+    
 end
 
 class BasicNotification < NotificationDecorator
@@ -127,21 +155,12 @@ class BookingNotification < NotificationDecorator
     
     def message
         return "<h1>You have a new  #{get_action}. Check out the details below</h1> \r\n
-        <p>Booking from: #{@sender["firstname"]} #{@sender["lastname"]} </p>\r\n
-        #{get_booking_message} "
+        <p>Booking from: #{get_sender_full_name}} </p>\r\n
+        #{BookingFunctions.get_booking_message(get_content)} "
     end
     
      #send notification using async
-    def send_notification
-        @sender_email = "bookatutorapp@gmail.com"
-        @receiver_email = self.get_receiver["email"]
-        
-        mail_status = Async do
-            self.send_email
-        end
-        
-        return mail_status.wait.content_type.length
-    end
+    #self.send_notification_to_receiver
   
 end
 
@@ -156,8 +175,8 @@ class UserBookingNotification < NotificationDecorator
     
     def message
         return "<h1>You have created a #{get_action}. Check out the details below </h1>\r\n 
-        <p>Tutor Booked: #{@receiver["firstname"]} #{@receiver["lastname"]}</p> \r\n
-        #{get_booking_message} \r\n
+        <p>Tutor Booked: #{get_receiver_full_name}</p> \r\n
+        #{BookingFunctions.get_booking_message(get_content)} \r\n
         <p>Thank you for using bookatutor to create this booking</p>"
     end
     
@@ -165,29 +184,28 @@ class UserBookingNotification < NotificationDecorator
         return @subject
     end
     
-    def send_notification
-        @sender_email = "bookatutorapp@gmail.com"
-        @receiver_email = self.get_sender["email"]
-        
-        mail_status = Async do
-            self.send_email
-        end
-        
-        #return mail_status.wait.content_type.length
-    end
+    
 end
 
 #end of booking decoration
 
 
+#Cconfigure notification to send email to user and user_reviewed when action is review
 class ReviewNotification < NotificationDecorator
     def initialize(notification)
         super(notification)
         @action = "Review"
+        @subject = "New #{@action} "
     end
     
-    def get_action
-        return @action
+    def message
+        return "<h1>You have a new #{get_action}. Check out the details below</h1>
+        <p>Review From: #{get_sender_full_name}</p>
+        #{ReviewFunctions.get_review_message}"
+    end
+    
+    def get_subject
+        return @subject
     end
 end
 
