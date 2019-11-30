@@ -201,7 +201,7 @@ class ReviewNotification < NotificationDecorator
     def message
         return "<h1>You have a new #{get_action}. Check out the details below</h1>
         <p>Review From: #{get_sender_full_name}</p>
-        #{ReviewFunctions.get_review_message}"
+        #{ReviewFunctions.get_review_message(get_content)}"
     end
     
     def get_subject
@@ -209,13 +209,35 @@ class ReviewNotification < NotificationDecorator
     end
 end
 
+class UserReviewNotification < NotificationDecorator
+    def initialize(notification)
+        super(notification)
+        @action = "Review"
+        @subject = "New #{@action} created"
+    end
+    
+    def message
+        return "<h1>You created a new #{get_action}. Check out the details below</h1>
+        <p>Reviewed: #{get_receiver_full_name}</p>
+        #{ReviewFunctions.get_review_message(get_content)}"
+    end
+    
+    def get_subject
+        return @subject
+    end
+end
+
+# end Review decorators configuration
+
 class InboxNotification < NotificationDecorator
     def initialize(notification)
         super(notification)
-        @action = "Inbox"
+        @action = "Message"
+        @subject = "New #{@action}"
     end
     def message
-        return "You have a new #{@action} from #{@sender}. Check out the details"
+        return "<h1>You have a new #{@action} from #{get_sender_full_name}</h1>.
+        <p><a href='localhost:3000/user/signin'>Login</a> to read</p>"
     end
 
 end

@@ -23,7 +23,7 @@ class BookingNotificationTest < Minitest::Test
         assert_equal(true, BookingNotificationDecorator.send_notification > 0)
     end
     
-     def test_user_booking_notification
+    def test_user_booking_notification
         assert_equal(true, BookingNotificationDecorator.get_user_booking_notification != nil)
     end
     
