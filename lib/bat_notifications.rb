@@ -9,7 +9,7 @@ require_relative 'functions/ReviewFunctions'
 # concrete component to be decorated.
 # we have a notification class that we will like to decorate based on action
 # action include booking, review, inbox.
-class Notification
+class BAT_Notification
     def initialize(sender, receiver, content)
         @sender = sender
         @receiver = receiver

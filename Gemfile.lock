@@ -17,6 +17,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   async
@@ -24,4 +25,4 @@ DEPENDENCIES
   pony (~> 1.13, >= 1.13.1)
 
 BUNDLED WITH
-   1.17.2
+   2.1.0.pre.2
