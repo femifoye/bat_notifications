@@ -29,7 +29,7 @@ module ReviewNotificationDecorator
         set_content
         set_sender
         set_receiver
-        @notification = Notification.new(@sender, @receiver, @content)
+        @notification = BAT_Notification.new(@sender, @receiver, @content)
         @notification = ReviewNotification.new(@notification)
     end
     

@@ -26,7 +26,7 @@ class ReviewNotificationTest < Minitest::Test
         assert_equal(true, ReviewNotificationDecorator.get_user_review_notification != nil)
     end
     
-     def test_user_review_notification_subject
+    def test_user_review_notification_subject
         assert_equal("New Review created", ReviewNotificationDecorator.get_user_review_notification_subject)
     end
     
