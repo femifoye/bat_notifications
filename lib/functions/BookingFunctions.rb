@@ -3,7 +3,6 @@
 
 require 'geocoder'
 
-<<<<<<< HEAD
 # Geocoder.configure(  
 #  # geocoding options
 #  :timeout      => 7,           # geocoding service timeout (secs)
@@ -17,8 +16,6 @@ require 'geocoder'
 #  :cache_prefix => "geocoder:", # prefix (string) to use for all cache keys
 # )
 
-=======
->>>>>>> parent of 1296b1e... geocoder working on windows
 module BookingFunctions
     def self.get_location(content)
         @location = Geocoder.search("#{content["location"]["latitude"]}, #{content["location"]["longitude"]}")[0].data
