@@ -12,7 +12,7 @@ require 'geocoder'
 #  :use_https    => true,        # use HTTPS for lookup requests? (if supported)
 #  :http_proxy   => '',          # HTTP proxy server (user:pass@host:port)
 #  :https_proxy  => '',          # HTTPS proxy server (user:pass@host:port)
-#  :api_key      => "AIzaSyBrhV1CiAt6AUOJn5FZvjOrTMhjk9lQu00",         # API key for geocoding service
+#  :api_key      => "",         # API key for geocoding service
 #  :cache        => nil,         # cache object (must respond to #[], #[]=, and #keys)
 #  :cache_prefix => "geocoder:", # prefix (string) to use for all cache keys
 # )
