@@ -3,7 +3,7 @@
 
 module ReviewFunctions
     def self.get_review_message(content)
-        @review_message = "<p>Review Content: #{content['content']}</p>
+        @review_message = "<p>Review Content: #{content['review_content']}</p>
         <p>Review Stars: #{content['review_stars']}"
     end
 end
