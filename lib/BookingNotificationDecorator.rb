@@ -30,7 +30,7 @@ module BookingNotificationDecorator
         set_content
         set_sender
         set_receiver
-        @notification = BAT_Notification.new(@sender, @receiver, @content)
+        @notification = Notification.new(@sender, @receiver, @content)
         @notification = BookingNotification.new(@notification)
     end
     
