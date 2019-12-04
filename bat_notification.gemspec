@@ -1,6 +1,6 @@
     Gem::Specification.new do |s|
      s.name = 'BAT_Notifications'
-     s.version = '0.0.2'
+     s.version = '0.0.3'
      s.date = '2019-11-24'
      s.summary = "Send notification to users"
      s.description = "A library to send notification to users on actions such as reviews, bookings, e.t.c"
